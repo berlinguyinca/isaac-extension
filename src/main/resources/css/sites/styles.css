@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+body.extension .container {
+  width: 800px;
+  margin: 0;
+  position: relative;
+  padding-bottom: 22px;
+  padding-top: 22px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+}
+body.extension .container h1 {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  margin: 0;
+}
+body.extension .container h3 {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 25px;
+  color: #5657AE;
+  letter-spacing: 0;
+  line-height: 29px;
+  margin-bottom: 2px;
+}
+body.extension .container h5 {
+  font-family: Roboto;
+  font-size: 16px;
+  color: #999EA8;
+  letter-spacing: 0;
+  line-height: 28px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+body.extension .container h5 a {
+  text-decoration: none;
+  color: #757982;
+}
+body.extension .container h5 a:hover {
+  text-decoration: underline;
+}
+body.extension .container .question {
+  background: #F1F1F1;
+  padding: 12px 22px 12px;
+  border-radius: 6px;
+  display: block;
+  margin: 0 0 15px;
+}
+body.extension .container .question label {
+  font-family: Roboto;
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-bottom: 0px;
+  text-align: left;
+}
+body.extension .container .question .btn-wrap div {
+  text-align: right;
+}
+body.extension .container .question .btn {
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  border-radius: 6px;
+  font-family: Roboto;
+  font-size: 17px;
+  color: #282B31;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  cursor: pointer;
+}
+body.extension .container .question .btn.focus {
+  outline: none;
+}
+body.extension .container .question .btn:hover {
+  border: 1px solid #d8d8d8;
+}
+body.extension .container .question .btn.active {
+  box-shadow: none;
+}
+body.extension .container .question .btn.btn-disagree.active {
+  background-image: linear-gradient(-135deg, #F23673 0%, #FFC066 100%);
+  color: white;
+}
+body.extension .container .question .btn.btn-noopinion.active {
+  background-image: linear-gradient(-135deg, #7956EC 0%, #2FB9F8 100%);
+  color: white;
+}
+body.extension .container .question .btn.btn-agree.active {
+  background-image: linear-gradient(-135deg, #12B3A5 0%, #3CECB0 100%);
+  color: white;
+}
+body.extension .bottom-cap {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 12px;
+  width: 100%;
+  background-image: linear-gradient(-90deg, #FFA466 0%, #FF5360 100%);
+  box-shadow: 0 -5px 5px 0 rgba(0, 0, 0, 0.11);
+}

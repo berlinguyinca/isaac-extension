@@ -1,0 +1,30 @@
+<!-- this is the template for a standard Isaac extension -->
+
+
+<!-- template to be rendered -->
+{{#each evaluations}}
+    <div class="question">
+        <div class="row align-items-center">
+            <div class="col-5">
+                <label class="control-label">{{name}}</label>
+            </div>
+            <div class="col-7 btn-wrap">
+                <div data-toggle="buttons">
+                    <label class="btn btn-disagree btn-lg">
+                        <input type="radio" name="evaluation-{{@index}}" autocomplete="off" choice="disagree"
+                               key="{{key}}">Disagree
+                    </label>
+                    <label class="btn btn-noopinion btn-lg active">
+                        <input type="radio" name="evaluation-{{@index}}" autocomplete="off" choice="default"
+                               key="{{key}}" checked> No Opinion
+                    </label>
+                    <label class="btn btn-agree btn-lg">
+                        <input type="radio" name="evaluation-{{@index}}" autocomplete="off" choice="agree"
+                               key="{{key}}"> Agree
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{/each}}

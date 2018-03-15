@@ -1,0 +1,17 @@
+#Installation
+
+1. checkout source code to local directory using git
+2. open chrome
+3. go to: chrome://extensions/
+4. enable developer mode
+5. click 'Load unpacked extension...'
+6. navigate to 'extensions/tradingview'
+7. load it
+
+#testing it
+
+1. go to: https://www.tradingview.com/
+2. you should see a progress bar: 'isaacification in progress' (first time you open the page, it could take a while, if the lambda servers are offline)
+3. you should see minor improvements on top authors, with their isaac score
+4. positive isaac authors should be highlighted green
+5. negative isaac authors should be highlighted in red

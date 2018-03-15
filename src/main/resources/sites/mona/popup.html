@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap -->
+    <!-- <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css" /> -->
+
+    <!-- Had to remove bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="../../css/sites/styles.css"/>
+</head>
+
+<body class=extension>
+<form id="isaac_form" class="form-horizontal">
+    <!-- hidden data, but required -->
+    <input class="form-control col-sml-8" id="title" size="50" value="" type="hidden" readonly
+           key="title" name="metadata"/>
+    <input class="form-control" id="user" size="50" value="" type="hidden" readonly key="user"
+           name="metadata"/>
+    <input class="form-control" id="trackedUrl" size="50" value="" type="hidden" readonly
+           key="url" name="metadata"/>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-9">
+                <h3><span id="showTitle">Title</span></h3>
+                <h5>sourced from Massbank of North America</h5>
+            </div>
+            <div class="col-3">
+                <span  class="pull-right img-responsive">
+                    <a href="http://isaac.international" title="Visit the Isaac Homepage" target="_blank"><img src="../../img/Logo - Horizontal@1.5x.png" width="119" height="35" alt=""></a>
+                </span>
+            </div>
+        </div>
+        <!-- here we render the templates -->
+
+        <div class="row">
+            <div class="col-12">
+                <div id="templatePlaceholder"></div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <hr/>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary" style="margin-bottom:22px">Submit evaluation</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="bottom-cap"></div>
+
+
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/handlebars-v4.0.11.js"></script>
+<script type="text/javascript" src="../templates/evaluations.js"></script>
+
+<script src="../../variables.js"></script>
+<script src="popup.js"></script>
+</body>
+
+</html>
