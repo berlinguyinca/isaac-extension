@@ -20,7 +20,10 @@ Currently this extension is under review and cannot be installed directly from t
 6. navigate to 'extensions/tradingview'
 7. load it
 
-## Using it
+# Using it
 
 To make it easier for you to get started, we are providing you with a quick tutorial, which can be found on our steemit blog: https://steemit.com/cryptocurrency/@berlinguyinca/using-the-isaac-extension
 
+# Privacy notice
+
+You can find the complete Isaac Privacy notice at: http://isaac.international/privacy
