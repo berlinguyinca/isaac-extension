@@ -1,10 +1,10 @@
-#About
+# About
 
 Isaac is an evaluation and reward platform for crowdsourcing reviews and providing impartial ratings for online content. This extension is an integrated part of it, to easily collect contributions. 
 If you like to find out more about Isaac, please have a look at our home page, which is located at http://isaac.international 
 
 
-#Installation
+# Installation
 
 ## Installing it from the google web store
 
