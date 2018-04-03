@@ -2,7 +2,11 @@
 //this runs on the actual tradingview page and not in the extension scope!
 
 //add font awesome
-$("head").append("<link id='fontawesome' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' rel='stylesheet' />");
+//todo, we need some rule to not add it more than once
+
+$("head").append(
+    "<link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.0.9/css/all.css\" integrity=\"sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1\" crossorigin=\"anonymous\">");
+
 
 //call the isaacification process
 isaacification();
