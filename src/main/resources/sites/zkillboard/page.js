@@ -27,8 +27,9 @@ $("#DataTables_Table_0 ").find("td.item_dropped, td.item_destroyed").each(functi
 
   //add isaac buttons at the last row
 
-    var plusResponse = "<i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i>";
-    var minusResponse = "<i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i>";
+    var itemId = "your momma";
+    var plusResponse = "<i onclick='alert(itemId);' class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i>";
+    var minusResponse = "<i onclick='alert(itemId);' class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i>";
 
     //+ to approve, with tooltip describing what we do
     $(this).parent().find("td:last").after('<td>'+plusResponse+minusResponse+'</td>');
