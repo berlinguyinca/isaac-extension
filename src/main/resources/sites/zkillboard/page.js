@@ -49,8 +49,8 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
         $("#DataTables_Table_0 ").find("td.item_dropped, td.item_destroyed").each(function () {
 
             //add isaac buttons at the last row
-            var plusResponse = "<a ship='' item='' onclick='upvoteItem($(this));'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
-            var minusResponse = "<a ship='' item='' onclick='downvoteItem($(this));'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
+            var plusResponse = "<a group ='' ship='' item='' onclick='upvoteItem($(this));'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
+            var minusResponse = "<a group = '' ship='' item='' onclick='downvoteItem($(this));'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
 
             //+ to approve, with tooltip describing what we do
             $(this).parent().find("td:last").after('<td>' + plusResponse + minusResponse + '</td>');
