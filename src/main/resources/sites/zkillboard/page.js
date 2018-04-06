@@ -23,14 +23,23 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
 
 //helper functions
 
-        function upvoteItem(item) {
+
+        var upvoteScript = document.createElement('script');
+        upvoteScript.textContent = function upvoteItem(item) {
             console.log(item);
 
-        }
+        };
 
-        function downvoteItem(item) {
+
+        var downvoteScript = document.createElement('script');
+        downvoteScript.textContent = function upvoteItem(item) {
             console.log(item);
-        }
+
+        };
+
+
+        (document.head || document.documentElement).appendChild(upvoteScript);
+        (document.head || document.documentElement).appendChild(downvoteScript);
 
 //do the data collection here
 
@@ -39,18 +48,22 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
 
 //extract the name of the ship
         var shipGroup = $("tr td a[href*='/ship/'] ~ small a").get(0);
-        var ship = $(shipGroup).parent().siblings().first();
+        var ship = $(shipGroup).parent().siblings().first().text();
 
-        console.log($(shipGroup).text());
-        console.log($(ship).text());
-
-        console.log("discovered ship: " + shipGroup);
 
         $("#DataTables_Table_0 ").find("td.item_dropped, td.item_destroyed").each(function () {
 
+            //assemble our data object
+            var inspection = {};
+            inspection.ship = ship;
+            inspection.group = $(shipGroup).text();
+
+            //base 64 encode it
+            var encoded = btoa(JSON.stringify(inspection));
+
             //add isaac buttons at the last row
-            var plusResponse = "<a group ='' ship='' item='' onclick='upvoteItem($(this));'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
-            var minusResponse = "<a group = '' ship='' item='' onclick='downvoteItem($(this));'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
+            var plusResponse = "<a data-item='"+encoded+"' onclick='upvoteItem(atob($(this).data(\"item\")));'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
+            var minusResponse = "<a data-item='"+encoded+"' onclick='downvoteItem(atob($(this).data(\"item\")));'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
 
             //+ to approve, with tooltip describing what we do
             $(this).parent().find("td:last").after('<td>' + plusResponse + minusResponse + '</td>');
