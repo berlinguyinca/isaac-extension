@@ -23,20 +23,25 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
 
 //helper functions
 
-
         var upvoteScript = document.createElement('script');
         upvoteScript.textContent = function upvoteItem(item) {
-            console.log(item);
+            var contribution = JSON.parse(item);
+
+            contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = true;
+
+            var data = {type: "TO_ISAAC", content: contribution};
+            window.postMessage({type: "TO_ISAAC", content: contribution}, "*");
 
         };
 
 
         var downvoteScript = document.createElement('script');
-        downvoteScript.textContent = function upvoteItem(item) {
-            console.log(item);
+        downvoteScript.textContent = function downvoteItem(item) {
+            var contribution = JSON.parse(item);
+            contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = true;
 
+            window.postMessage({type: "TO_ISAAC", content: contribution}, "*");
         };
-
 
         (document.head || document.documentElement).appendChild(upvoteScript);
         (document.head || document.documentElement).appendChild(downvoteScript);
@@ -48,33 +53,43 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
 
 //extract the name of the ship
         var shipGroup = $("tr td a[href*='/ship/'] ~ small a").get(0);
-        var ship = $(shipGroup).parent().siblings().first().text();
+        var ship = $(shipGroup).parent().siblings().first();
 
+        $("#DataTables_Table_0 ").find("td.price").each(function () {
 
-        $("#DataTables_Table_0 ").find("td.item_dropped, td.item_destroyed").each(function () {
+            var item = $(this).siblings().eq(1).children().first();
 
-            //assemble our data object
-            var inspection = {};
-            inspection.ship = ship;
-            inspection.group = $(shipGroup).text();
+            var evaluation = {name: $(item).text()};
+            var evaluations = {};
+            evaluations[evaluation.name] = evaluation;
+            var contribution = {
+                date: Math.round((new Date()).getTime()),
+                record: {
+                    domain: 'zkillboard',
+                    url: window.location.href,
+                    metaData: [
+                        {
+                            ship: ship,
+                            group: shipGroup,
+                            shipId: $(ship).attr("href").match(/([0-9]+)/)[1],
+                            groupId: $(shipGroup).attr("href").match(/([0-9]+)/)[1]
+                        }
+                    ]
+                },
+                evaluations: evaluations
+            };
+
 
             //base 64 encode it
-            var encoded = btoa(JSON.stringify(inspection));
+            var encoded = btoa(JSON.stringify(contribution));
 
             //add isaac buttons at the last row
-            var plusResponse = "<a data-item='"+encoded+"' onclick='upvoteItem(atob($(this).data(\"item\")));'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
-            var minusResponse = "<a data-item='"+encoded+"' onclick='downvoteItem(atob($(this).data(\"item\")));'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
+            var plusResponse = "<a data-item='" + encoded + "' onclick='upvoteItem(atob($(this).data(\"item\")));$(this).parent().fadeOut();'><i class='fas fa-plus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a good choice?' style='color: darkgreen; padding-left: 5px; padding-right: 5px'></i></a>";
+            var minusResponse = "<a data-item='" + encoded + "' onclick='downvoteItem(atob($(this).data(\"item\")));$(this).parent().fadeOut();'><i class='fas fa-minus-circle'  aria-hidden='true' data-toggle='tooltip' title='module is a bad choice?' style='color: darkred; padding-left: 5px; padding-right: 5px'></i></a>";
 
-            //+ to approve, with tooltip describing what we do
-            $(this).parent().find("td:last").after('<td>' + plusResponse + minusResponse + '</td>');
-            //- to reject, with tooltip describing what we do
+            $(this).parent().find("td:last").after('<td><span>' + plusResponse + minusResponse + '</span></td>');
         });
 
     }
 
-//this sections calculates real world isk to dollar pricing
-
-//calculate how expensive this lost was in USD
-
-//render the isaac ratings here
 }
