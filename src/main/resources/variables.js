@@ -4,59 +4,6 @@ const isaac = "https://dev.isaac.international/contributions";
 //trading view evaluations can be found here
 const isaacTradingViewEvaluation = "https://dev.isaac.international/aggregation/metadata/user/";
 
-
-/**
- * associate the user address with the object
- * and send it to the server
- * @param obj
- */
-function submitIssacObjectToServer(obj) {
-    //access object storage and send processed data to the client
-    chrome.storage.sync.get("address", function (storage) {
-
-        obj.user = {};
-        obj.user.address = storage.address;
-
-        console.log(obj);
-
-        console.log('sending data to isaac');
-
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(obj),
-            url: isaac,
-            dataType: 'json',
-            contentType: 'application/json; charset=UTF-8',
-
-            success: function (data) {
-                console.log('data submitted');
-
-                $("html").fadeOut(1500);
-                window.close();
-            },
-            error: function (request, status, error) {
-
-                try {
-                    var errorMessage = jQuery.parseJSON(request.responseText);
-
-                    if (errorMessage.message == "Missing Authentication Token") {
-                        console.log("this would be a 404 error, not much we can do about right now!");
-                        alert('looks like we are currently offline, please try again in a little bit!');
-                    }
-                    else {
-                        alert('sorry, we encountered an error, please check the console logs!' + request.responseText);
-                    }
-                }
-                catch (err) {
-                    alert('sorry, we encountered an error, please check the console logs!' + request.responseText);
-                    $("html").fadeOut(900);
-                    window.close();
-                }
-            }
-        });
-    });
-}
-
 /**
  * this function is used to send the evaluations collected by the popup pageAction
  * to the remote server. It basically evaluates the given form for us
@@ -112,6 +59,8 @@ function sendToIsacc(event, domain) {
 
     submitIssacObjectToServer(obj);
 
+    $("html").fadeOut(1500);
+    window.close();
 }
 
 /**
@@ -181,3 +130,50 @@ window.addEventListener("message", function(event) {
         submitIssacObjectToServer(event.data.content);
     }
 });
+
+
+
+/**
+ * associate the user address with the object
+ * and send it to the server
+ * @param obj
+ */
+function submitIssacObjectToServer(obj) {
+    console.log("submitting data to isaac");
+    //access object storage and send processed data to the client
+    chrome.storage.sync.get("address", function (storage) {
+
+        obj.user = {};
+        obj.user.address = storage.address;
+        console.log('received user account');
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(obj),
+            url: isaac,
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+
+            success: function (data) {
+                console.log('data submitted successfully');
+            },
+            error: function (request, status, error) {
+                console.log('failure to submit');
+                try {
+                    var errorMessage = jQuery.parseJSON(request.responseText);
+
+                    if (errorMessage.message == "Missing Authentication Token") {
+                        console.log("this would be a 404 error, not much we can do about right now!");
+                        alert('looks like we are currently offline, please try again in a little bit!');
+                    }
+                    else {
+                        alert('sorry, we encountered an error, please check the console logs!' + request.responseText);
+                    }
+                }
+                catch (err) {
+                    alert('sorry, we encountered an error, please check the console logs!' + request.responseText);
+                }
+            }
+        });
+    });
+}

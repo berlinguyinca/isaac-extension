@@ -26,8 +26,8 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.tradingview.com/*", "https://zkillboard.com/kill/*"],
-      "js": ["variables.js", "js/jquery.min.js", "js/jquery-ui.min.js", "sites/tradingview/page.js", "sites/zkillboard/page.js"],
+      "matches": ["https://www.tradingview.com/*", "https://zkillboard.com/kill/*","http://mona.fiehnlab.ucdavis.edu/*"],
+      "js": ["variables.js", "js/jquery.min.js", "js/jquery-ui.min.js","sites/api.js", "sites/tradingview/page.js", "sites/zkillboard/page.js", "sites/mona/page.js"],
       "css": ["css/jquery-ui.min.css", "sites/tradingview/css/page.css"],
       "run_at": "document_end"
     }

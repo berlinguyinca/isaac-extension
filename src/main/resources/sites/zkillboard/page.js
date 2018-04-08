@@ -21,37 +21,6 @@ if (window.location.href.indexOf('zkillboard.com') > 0) {
      */
     function issacDataCollection() {
 
-//helper functions
-
-        var upvoteScript = document.createElement('script');
-        upvoteScript.textContent = function upvoteItem(item) {
-            var contribution = JSON.parse(item);
-
-            contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = true;
-
-            var data = {type: "TO_ISAAC", content: contribution};
-            window.postMessage({type: "TO_ISAAC", content: contribution}, "*");
-
-        };
-
-
-        var downvoteScript = document.createElement('script');
-        downvoteScript.textContent = function downvoteItem(item) {
-            var contribution = JSON.parse(item);
-            contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = true;
-
-            window.postMessage({type: "TO_ISAAC", content: contribution}, "*");
-        };
-
-        (document.head || document.documentElement).appendChild(upvoteScript);
-        (document.head || document.documentElement).appendChild(downvoteScript);
-
-//do the data collection here
-
-
-//if this is the case add headers to row for isaac
-
-//extract the name of the ship
         var shipGroup = $("tr td a[href*='/ship/'] ~ small a").get(0);
         var ship = $(shipGroup).parent().siblings().first();
 
