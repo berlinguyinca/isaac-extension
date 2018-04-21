@@ -16,7 +16,7 @@ upvoteScript.textContent = function upvoteItem(item) {
 var downvoteScript = document.createElement('script');
 downvoteScript.textContent = function downvoteItem(item) {
     var contribution = JSON.parse(item);
-    contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = true;
+    contribution.evaluations[Object.keys(contribution.evaluations)[0]].recordAccepted = false;
 
     window.postMessage({type: "TO_ISAAC", content: contribution}, "*");
 };
